@@ -31,36 +31,7 @@ cd /usr/src/
 wget --no-check-certificate https://raw.github.com/mpeterss/cdr-stats/$BRANCH/install/bash-common-functions.sh -O bash-common-functions.sh
 wget --no-check-certificate https://raw.github.com/mpeterss/cdr-stats/$BRANCH/install/cdr-stats-functions.sh -O cdr-stats-functions.sh
 
-
-#Menu Section for Script
-show_menu_switch() {
-	clear
-	echo " > Do you want to install CDR-Stats for FreeSWITCH or Asterisk ?"
-	echo "================================================================"
-	echo "	1)  FreeSWITCH"
-	echo "	2)  Asterisk"
-	echo -n "(1-2) : "
-	read OPTION < /dev/tty
-}
-
-
-ExitFinish=0
-while [ $ExitFinish -eq 0 ]; do
-    show_menu_switch
-    case $OPTION in
-    1)
-        INSTALL_TYPE='FREESWITCH'
-        echo "We will make some pre-configuration on CDR-Stats for FreeSWITCH..."
-        ExitFinish=1
-    ;;
-    2)
-        INSTALL_TYPE='ASTERISK'
-        echo "We will make some pre-configuration on CDR-Stats for Asterisk..."
-        ExitFinish=1
-    ;;
-    *)
-    esac
-done
+INSTALL_TYPE='FREESWITCH'
 
 
 #Include general functions
@@ -76,7 +47,7 @@ func_identify_os
 func_accept_license_mplv2
 
 #run install menu
-run_menu_cdr_stats_install
+run_cdr_stats_install
 
 
 

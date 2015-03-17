@@ -853,46 +853,9 @@ func_install_mongodb() {
 }
 
 
-#Menu Section for Script
-show_menu_cdr_stats() {
-    clear
-    echo " > CDR-Stats Installation Menu"
-    echo "====================================="
-    echo "  1)  Install All"
-    echo "  2)  Install CDR-Stats Web Frontend"
-    echo "  3)  Install CDR-Stats Backend / CDR-Stats-Celery"
-    echo "  4)  Install MongoDB"
-    echo "  0)  Quit"
-    echo -n "(0-4) : "
-    read OPTION < /dev/tty
-}
+run_cdr_stats_install() {
 
+    func_install_mongodb
+    func_install_frontend
 
-run_menu_cdr_stats_install() {
-    ExitFinish=0
-    while [ $ExitFinish -eq 0 ]; do
-        # Show menu with Installation items
-        show_menu_cdr_stats
-        case $OPTION in
-            1)
-                func_install_mongodb
-                func_install_frontend
-                func_install_backend
-                echo done
-            ;;
-            2)
-                func_install_frontend
-            ;;
-            3)
-                func_install_backend
-            ;;
-            4)
-                func_install_mongodb
-            ;;
-            0)
-                ExitFinish=1
-            ;;
-            *)
-        esac
-    done
 }
